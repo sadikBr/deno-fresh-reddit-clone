@@ -32,7 +32,7 @@ export default function Home({ data }: { data: { message: string } }) {
       <div class="px-4 py-8 mx-auto bg-[#86efac]">
         <TopSection message={message} />
       </div>
-      <Posts subreddit="all" limit={100} />
+      <Posts subreddit="all" />
     </>
   );
 }

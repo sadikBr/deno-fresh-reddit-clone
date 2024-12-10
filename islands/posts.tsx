@@ -8,7 +8,7 @@ interface PostsProps {
   limit?: number;
 }
 
-export default function Posts({ subreddit, limit = 50 }: PostsProps) {
+export default function Posts({ subreddit, limit = 100 }: PostsProps) {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
