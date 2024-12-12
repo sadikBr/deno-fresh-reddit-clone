@@ -15,7 +15,7 @@ interface PostLayoutProps {
     author: string;
     subreddit: string;
     url: string;
-    likes: string;
+    likes: number;
   };
 }
 
@@ -38,7 +38,7 @@ function PostLayout({ children, rest }: PostLayoutProps) {
       <div class="mt-4 block md:hidden text-white">
         <div class="flex items-center justify-between">
           <h1 class="mb-1 line-clamp-1 text-lg font-semibold">{rest.title}</h1>
-          <span class="font-extrabold text-xl">{formatNumber(Number(rest.likes))}</span>
+          <span class="font-extrabold text-xl">{formatNumber(rest.likes)}</span>
         </div>
         <div class="text-sm">
           Created by <span class="font-bold">{rest.author}</span> on{" "}

@@ -6,6 +6,7 @@ export interface ExtractedPostData {
   author: string;
   subreddit: string;
   url: string;
+  likes: number
 }
 
 export function extractPostData(post: PostData) {
