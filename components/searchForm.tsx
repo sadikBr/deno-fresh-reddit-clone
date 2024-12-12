@@ -4,7 +4,7 @@ export default function SearchForm({ searchTerm, sort }: { searchTerm: string, s
       method="POST"
       className="bg-white p-1 rounded-lg flex items-center gap-1"
     >
-      <div class="flex flex-col md:flex-row items-center gap-1">
+      <div class="min-w-[400px] max-w-screen flex flex-col md:flex-row md:items-center gap-1">
         <input
           type="text"
           value={searchTerm}
@@ -25,7 +25,7 @@ export default function SearchForm({ searchTerm, sort }: { searchTerm: string, s
           </select>
           <button
             type="submit"
-            class="bg-yellow-400 text-white px-6 py-2 rounded-md border border-yellow-300 font-bold hover:bg-yellow-300 transition"
+            class="bg-yellow-400 flex-1 text-white px-6 py-2 rounded-md border border-yellow-300 font-bold hover:bg-yellow-300 transition"
           >
             Search
           </button>
