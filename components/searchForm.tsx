@@ -2,7 +2,7 @@ export default function SearchForm() {
   return (
     <form
       method="POST"
-      className="bg-white p-1 rounded-lg flex items-center gap-1"
+      className="bg-white p-1 rounded-lg flex items-center gap-1 max-w-screen"
     >
       <input
         type="text"
