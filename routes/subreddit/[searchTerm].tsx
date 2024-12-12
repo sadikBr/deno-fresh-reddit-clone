@@ -7,6 +7,12 @@ export const handler: Handlers = {
   async POST(req, context) {
     const form = await req.formData();
     const searchTerm = form.get("searchTerm")?.toString();
+    const sort = {
+      path: form.get("sortType")?.toString() ?? "hot",
+      period: form.get("sortPeriod")?.toString()
+    };
+
+    const urlSuffix = sort.path === "hot" || sort.path === "new" ? `?path=${sort.path}` : `?path=${sort.path}&period=${sort.period}`;
 
     if (!searchTerm) {
       return context.render({
@@ -16,13 +22,24 @@ export const handler: Handlers = {
 
     // Redirect user to thank you page.
     const headers = new Headers();
-    headers.set("location", `/subreddit/${searchTerm}`);
+    headers.set("location", `/subreddit/${encodeURIComponent(searchTerm)}${urlSuffix}`);
 
     return new Response(null, {
       status: 303, // See Other
       headers,
     });
   },
+  async GET(req, context) {
+    const url = new URL(req.url);
+    const searchParams = url.searchParams;
+    const sortType = searchParams.get("path");
+
+    const sort = (sortType === "hot" || sortType === "new") ? { path: sortType } : { path: sortType, period: searchParams.get('period') };
+
+    return context.render({
+      sort 
+    })
+  }
 };
 
 export default function SubredditPage(props: PageProps) {
@@ -30,6 +47,7 @@ export default function SubredditPage(props: PageProps) {
   const { data } = props;
 
   const message = data?.message;
+  const { sort } = data;
 
   return (
     <>
@@ -41,7 +59,7 @@ export default function SubredditPage(props: PageProps) {
           ).join("")}
         />
       </div>
-      <Posts subreddit={searchTerm} />
+      <Posts subreddit={searchTerm} sort={sort} />
     </>
   );
 }

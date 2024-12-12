@@ -6,9 +6,13 @@ import filterResponse from "../utils/filterResponse.ts";
 interface PostsProps {
   subreddit: string;
   limit?: number;
+  sort: {
+    path: string;
+    period?: string;
+  }
 }
 
-export default function Posts({ subreddit, limit = 100 }: PostsProps) {
+export default function Posts({ subreddit, limit = 100, sort }: PostsProps) {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
@@ -19,7 +23,7 @@ export default function Posts({ subreddit, limit = 100 }: PostsProps) {
         const response = await fetch(
           `https://www.reddit.com/r/${
             subreddit.replaceAll("%20", "")
-          }.json?limit=${limit}`,
+          }/${sort.path}.json?limit=${limit}${sort?.period && `&t=${sort.period}`}`,
         );
         const json = await response.json();
         let posts = filterResponse(json.data?.children || []);

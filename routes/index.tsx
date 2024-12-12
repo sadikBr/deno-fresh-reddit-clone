@@ -6,6 +6,12 @@ export const handler: Handlers = {
   async POST(req, context) {
     const form = await req.formData();
     const searchTerm = form.get("searchTerm")?.toString();
+    const sort = {
+      path: form.get("sortType")?.toString() ?? "hot",
+      period: form.get("sortPeriod")?.toString()
+    };
+
+    const urlSuffix = sort.path === "hot" || sort.path === "new" ? `?path=${sort.path}` : `?path=${sort.path}&period=${sort.period}`;
 
     if (!searchTerm) {
       return context.render({
@@ -15,7 +21,7 @@ export const handler: Handlers = {
 
     // Redirect user to thank you page.
     const headers = new Headers();
-    headers.set("location", `/subreddit/${encodeURIComponent(searchTerm)}`);
+    headers.set("location", `/subreddit/${encodeURIComponent(searchTerm)}${urlSuffix}`);
 
     return new Response(null, {
       status: 303, // See Other
@@ -32,7 +38,7 @@ export default function Home({ data }: { data: { message: string } }) {
       <div class="px-4 py-8 mx-auto bg-[#86efac]">
         <TopSection message={message} />
       </div>
-      <Posts subreddit="all" />
+      <Posts subreddit="all" sort={{ path: "hot" }} />
     </>
   );
 }
