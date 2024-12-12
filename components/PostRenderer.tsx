@@ -65,7 +65,7 @@ export default function PostRenderer({ post }: PostRendererProps) {
             src={rest.url}
             alt={rest.title}
             loading="lazy"
-            className="rounded-md w-full"
+            className="rounded-md w-full max-h-[800px] bg-black"
           />
         </PostLayout>
       );
@@ -76,7 +76,7 @@ export default function PostRenderer({ post }: PostRendererProps) {
             src={rest.url}
             controls
             loading="lazy"
-            className="rounded-md w-full"
+            className="rounded-md w-full max-h-[800px] bg-black"
           />
         </PostLayout>
       );
