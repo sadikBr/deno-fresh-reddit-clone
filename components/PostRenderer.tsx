@@ -35,8 +35,11 @@ function PostLayout({ children, rest }: PostLayoutProps) {
         </div>
       </div>
       {children}
-      <div class="mt-6 block md:hidden text-white">
-        <h1 class="flex items-center justify-between mb-1 line-clamp-1 text-lg font-semibold">{rest.title} <span class="font-extrabold">{formatNumber(Number(rest.likes))}</span></h1>
+      <div class="mt-4 block md:hidden text-white">
+        <div class="flex items-center justify-between">
+          <h1 class="mb-1 line-clamp-1 text-lg font-semibold">{rest.title}</h1>
+          <span class="font-extrabold text-xl">{formatNumber(Number(rest.likes))}</span>
+        </div>
         <div class="text-sm">
           Created by <span class="font-bold">{rest.author}</span> on{" "}
           <a
