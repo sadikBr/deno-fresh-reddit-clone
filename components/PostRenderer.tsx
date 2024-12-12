@@ -2,6 +2,8 @@ import type { PostData } from "../types/reddit-types.d.ts";
 import { extractPostData } from "../utils/extractPostData.ts";
 import { ComponentChild } from "preact/src/index.js";
 
+import { formatNumber } from '../utils/formaters.ts'
+
 interface PostRendererProps {
   post: PostData;
 }
@@ -13,13 +15,14 @@ interface PostLayoutProps {
     author: string;
     subreddit: string;
     url: string;
+    likes: string;
   };
 }
 
 function PostLayout({ children, rest }: PostLayoutProps) {
   return (
-    <div className="relative group bg-green-400 p-2 rounded-lg shadow-md mb-4 overflow-hidden">
-      <div className="absolute z-10 -top-full group-hover:top-0 right-0 bg-green-400 p-4 text-white w-full transition">
+    <div class="relative group bg-green-400 p-2 rounded-lg shadow-md mb-4 overflow-hidden">
+      <div class="absolute z-10 -top-full group-hover:-top-full md:group-hover:top-0 right-0 bg-green-400 p-4 text-white w-full transition">
         <h1 class="line-clamp-1 text-lg font-semibold">{rest.title}</h1>
         <div class="text-sm">
           Created by <span class="font-bold">{rest.author}</span> on{" "}
@@ -32,6 +35,18 @@ function PostLayout({ children, rest }: PostLayoutProps) {
         </div>
       </div>
       {children}
+      <div class="mt-6 block md:hidden text-white">
+        <h1 class="flex items-center justify-between mb-1 line-clamp-1 text-lg font-semibold">{rest.title} <span class="font-extrabold">{formatNumber(Number(rest.likes))}</span></h1>
+        <div class="text-sm">
+          Created by <span class="font-bold">{rest.author}</span> on{" "}
+          <a
+            class="text-yellow-400 font-bold"
+            href={`./${rest.subreddit}`}
+          >
+            r/{rest.subreddit}
+          </a>
+        </div>
+      </div>
     </div>
   );
 }

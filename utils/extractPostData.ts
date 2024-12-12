@@ -16,6 +16,7 @@ export function extractPostData(post: PostData) {
     title: post.title,
     author: post.author,
     subreddit: post.subreddit,
+    likes: post.ups,
     url: ''
   };
 
