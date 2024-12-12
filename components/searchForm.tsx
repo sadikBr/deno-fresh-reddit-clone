@@ -4,7 +4,7 @@ export default function SearchForm({ searchTerm, sort }: { searchTerm: string, s
       method="POST"
       className="bg-white p-1 rounded-lg flex items-center gap-1"
     >
-      <div class="min-w-sm md:min-w-md flex flex-col md:flex-row md:items-center gap-1">
+      <div class="w-[75vw] flex flex-col md:flex-row md:items-center gap-1">
         <input
           type="text"
           value={searchTerm}
