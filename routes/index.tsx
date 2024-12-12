@@ -36,7 +36,7 @@ export default function Home({ data }: { data: { message: string } }) {
   return (
     <>
       <div class="px-4 py-8 mx-auto bg-[#86efac]">
-        <TopSection message={message} />
+        <TopSection message={message} sort={{ path: "hot"}} />
       </div>
       <Posts subreddit="all" sort={{ path: "hot" }} />
     </>

@@ -57,6 +57,7 @@ export default function SubredditPage(props: PageProps) {
           subreddit={searchTerm.split("%20").map((part) =>
             part.charAt(0).toUpperCase() + part.substring(1)
           ).join("")}
+          sort={sort}
         />
       </div>
       <Posts subreddit={searchTerm} sort={sort} />

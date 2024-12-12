@@ -3,9 +3,13 @@ import SearchForm from "./searchForm.tsx";
 interface TopSectionProps {
   message: string | undefined;
   subreddit?: string;
+  sort: {
+    path: string;
+    period?: string
+  }
 }
 
-export default function TopSection({ message, subreddit }: TopSectionProps) {
+export default function TopSection({ message, subreddit, sort }: TopSectionProps) {
   return (
     <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center">
       <a href="/">
@@ -24,7 +28,7 @@ export default function TopSection({ message, subreddit }: TopSectionProps) {
         <small class="text-pink-700 font-semibold mt-6">{message}</small>
       )}
       <p class="my-4">
-        <SearchForm />
+        <SearchForm searchTerm={subreddit} sort={sort} />
       </p>
     </div>
   );
