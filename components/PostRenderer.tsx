@@ -25,10 +25,10 @@ function PostLayout({ children, rest }: PostLayoutProps) {
       <div class="absolute z-10 -top-full group-hover:-top-full md:group-hover:top-0 right-0 bg-green-400 p-4 text-white w-full transition">
         <h1 class="line-clamp-1 text-lg font-semibold">{rest.title}</h1>
         <div class="text-sm">
-          Created by <span class="font-bold">{rest.author}</span> on{" "}
+          Created by <a href={`/user/${rest.author}`} class="font-bold">{rest.author}</a> on{" "}
           <a
             class="text-yellow-400 font-bold"
-            href={`./${rest.subreddit}`}
+            href={`/subreddit/${rest.subreddit}?path=hot`}
           >
             r/{rest.subreddit}
           </a>
@@ -41,10 +41,10 @@ function PostLayout({ children, rest }: PostLayoutProps) {
           <span class="font-extrabold text-xl">{formatNumber(rest.likes)}</span>
         </div>
         <div class="text-sm">
-          Created by <span class="font-bold">{rest.author}</span> on{" "}
+          Created by <a href={`/user/${rest.author}`} class="font-bold">{rest.author}</a> on{" "}
           <a
             class="text-yellow-400 font-bold"
-            href={`./${rest.subreddit}`}
+            href={`/subreddit/${rest.subreddit}?path=hot`}
           >
             r/{rest.subreddit}
           </a>

@@ -7,6 +7,7 @@ import * as $_app from "./routes/_app.tsx";
 import * as $api_joke from "./routes/api/joke.ts";
 import * as $index from "./routes/index.tsx";
 import * as $subreddit_searchTerm_ from "./routes/subreddit/[searchTerm].tsx";
+import * as $user_username_ from "./routes/user/[username].tsx";
 import * as $posts from "./islands/posts.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
@@ -17,6 +18,7 @@ const manifest = {
     "./routes/api/joke.ts": $api_joke,
     "./routes/index.tsx": $index,
     "./routes/subreddit/[searchTerm].tsx": $subreddit_searchTerm_,
+    "./routes/user/[username].tsx": $user_username_,
   },
   islands: {
     "./islands/posts.tsx": $posts,
